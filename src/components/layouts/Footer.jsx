@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Conteinar from '../Conteinar';
+
 import Heading from '../Heading';
 import Image from '../Image';
-import foot from '/src/assets/logo.png'
+import foot from '/src/assets/logo.png';
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import Container from '../Container';
 
 const Footer = () => {
   return (
     <div className="bg-[#F5F5F3] py-14">
-      <Conteinar>
+      <Container>
         <div className="flex justify-between">
           <div className="">
             <Heading
@@ -113,7 +114,7 @@ const Footer = () => {
             2020 Orebi Minimal eCommerce Figma Template by Adveits
           </div>
         </div>
-      </Conteinar>
+      </Container>
     </div>
   );
 };

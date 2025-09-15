@@ -3,9 +3,10 @@ import Image from '../Image';
 import banners from '/src/assets/banner.png';
 import { Link } from 'react-router-dom';
 import { PiNumberTwoBold } from 'react-icons/pi';
-import Conteinar from '../Conteinar';
+
 import { FaTruck } from 'react-icons/fa6';
 import { FaUndo } from 'react-icons/fa';
+import Container from '../Container';
 
 
 const Bannar = () => {
@@ -16,7 +17,7 @@ const Bannar = () => {
       </Link>
 
       <div className="bg-[#FFFFFF]">
-        <Conteinar>
+        <Container>
           <div className="flex justify-between border-b-2 border-b-[#F0F0F0]">
             <div className="flex items-center gap-x-2 py-9">
               <PiNumberTwoBold />
@@ -33,7 +34,7 @@ const Bannar = () => {
               </p>
             </div>
           </div>
-        </Conteinar>
+        </Container>
       </div>
     </div>
   );

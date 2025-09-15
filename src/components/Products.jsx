@@ -1,40 +1,56 @@
 import React from 'react';
 import Image from './Image';
 import Badge from './Badge';
-import Flex from './Flex';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 import { LuRefreshCw } from 'react-icons/lu';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../slices/addToCartSlice';
 
 
-const Products = ({ prouctImg, badgeText }) => {
+
+
+
+const Products = ({ productImg, badgeText, title, price }) => {
+  
+ let dispatch = useDispatch()
+  let handelAddToCart = () => {
+    dispatch(
+      addToCart({
+        title: title,
+        price: price,
+        productImg: productImg,
+        quantity: 1,
+      })
+    );
+  };
   return (
     <>
-      <div className="relative group px-3">
-        <Badge text={badgeText} className={'absolute top-5 left-5'} />
-        <Image className={'w-full'} imgSrc={prouctImg} />
+      <div className="relative px-3 group">
+        <Badge text={badgeText} className={'absolute top-5 left-5 z-10'} />
+        <Image className={'w-full object-contain'} imgSrc={productImg} />
         <div
           className="bg-white p-7 absolute w-full bottom-7 left-0 
                   opacity-0 translate-y-5 
                   group-hover:opacity-100 group-hover:translate-y-0 
                   transition-all duration-700 ease-in-out"
         >
-          <Flex className={'items-center justify-end gap-x-3'}>
+          <div className={'flex items-center justify-end gap-x-3'}>
             <h3>Add to Wish List</h3>
             <FaHeart />
-          </Flex>
-          <Flex className={'items-center justify-end gap-x-3'}>
+          </div>
+          <div className={'flex items-center justify-end gap-x-3'}>
             <h3>Compare</h3>
             <LuRefreshCw />
-          </Flex>
-          <Flex className={'items-center justify-end gap-x-3'}>
-            <h3>Add to Wish List</h3>
+          </div>
+          <div className={'flex items-center justify-end gap-x-3'} onClick={handelAddToCart}>
+            <h3>Add to Cart</h3>
             <FaShoppingCart />
-          </Flex>
+          </div>
         </div>
-        <Flex className={'justify-between'}>
-          <h3 className="text-xl font-bold">Basic Crew Neck Tee</h3>
-          <h3 className="text-[16px] text-[#767676]">$44.00</h3>
-        </Flex>
+        <div className={'flex justify-between'}>
+          <h3 className="text-xl font-bold">{title}</h3>
+          <h3 className="text-[16px] text-[#767676]">{price}</h3>
+        </div>
       </div>
     </>
   );
