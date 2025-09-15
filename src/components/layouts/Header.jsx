@@ -95,14 +95,22 @@ const Header = () => {
             </div>
 
             {showCart && (
-              <div className="h-screen w-[500px] bg-red-400 absolute right-0 top-0">
-                <ImCross onClick={() => setShow(!showCart)} />
+              <div className="h-screen w-[500px] bg-white shadow-lg absolute right-0 top-0 flex flex-col">
+                {/* Close button */}
+                <div className="flex justify-between items-center border-b px-5 py-4">
+                  <h2 className="text-lg font-semibold">Shopping Cart</h2>
+                  <ImCross
+                    onClick={() => setShow(!showCart)}
+                    className="cursor-pointer hover:text-red-500"
+                  />
+                </div>
 
-                <div className="p-5">
-                  <div className="grid grid-cols-5 gap-4 bg-gray-200 font-semibold text-center py-3 rounded">
-                    <p>Product Name</p>
+                {/* Cart Items */}
+                <div className="p-5 flex-1 overflow-y-auto">
+                  <div className="grid grid-cols-5 gap-4 bg-gray-100 font-semibold text-center py-3 rounded">
+                    <p>Product</p>
                     <p>Price</p>
-                    <p>Quantity</p>
+                    <p>Qty</p>
                     <p>Image</p>
                     <p>Total</p>
                   </div>
@@ -110,23 +118,43 @@ const Header = () => {
                   {data.map(item => (
                     <div
                       key={item.title}
-                      className="grid grid-cols-5 gap-4 items-center text-center border-b py-4"
+                      className="grid grid-cols-5 gap-4 items-center text-center border-b py-4 hover:bg-gray-50 transition"
                     >
                       <p className="text-sm font-medium">{item.title}</p>
                       <p>${item.price}</p>
                       <p>{item.quantity}</p>
                       <img
-                        className="w-12 h-12 object-contain mx-auto"
+                        className="w-12 h-12 object-contain mx-auto border rounded"
                         src={item.productImg}
                         alt={item.title}
                       />
-                      <p className="font-semibold">
+                      <p className="font-semibold text-green-600">
                         $
                         {parseFloat(item.price.replace('$', '')) *
                           item.quantity}
                       </p>
                     </div>
                   ))}
+                </div>
+
+                {/* Footer (Subtotal + Button) */}
+                <div className="border-t px-5 py-4 space-y-3">
+                  <div className="flex justify-between font-semibold text-lg">
+                    <span>Subtotal</span>
+                    <span>
+                      $
+                      {data.reduce(
+                        (acc, item) =>
+                          acc +
+                          parseFloat(item.price.replace('$', '')) *
+                            item.quantity,
+                        0
+                      )}
+                    </span>
+                  </div>
+                  <button className="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition">
+                    Proceed to Checkout
+                  </button>
                 </div>
               </div>
             )}
