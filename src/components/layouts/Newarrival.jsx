@@ -33,7 +33,11 @@ const Newarrival = () => {
      infinite: true,
      speed: 500,
      slidesToShow: 4,
-     slidesToScroll: 1,
+     slidesToScroll: 3,
+     autoplay: true, // স্লাইডার নিজে নিজে চলবে
+     autoplaySpeed: 2000,
+    //  pauseOnHover: false,
+     rtl: true,
      nextArrow: <NextArrow />,
      prevArrow: <PrevArrow />,
    };

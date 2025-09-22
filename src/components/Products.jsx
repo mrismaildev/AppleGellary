@@ -42,7 +42,7 @@ const Products = ({ productImg, badgeText, title, price }) => {
             <h3>Compare</h3>
             <LuRefreshCw />
           </div>
-          <div className={'flex items-center justify-end gap-x-3'} onClick={handelAddToCart}>
+          <div className={'flex items-center justify-end gap-x-3 cursor-pointer'} onClick={handelAddToCart}>
             <h3>Add to Cart</h3>
             <FaShoppingCart />
           </div>
